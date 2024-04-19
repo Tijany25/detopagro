@@ -100,8 +100,6 @@
 // };
 
 import React from "react";
-import classNames from "classnames";
-import './ProductCard.module.scss'
 import Link from "next/link";
 
 
