@@ -1,0 +1,31 @@
+
+    {
+        "items": {
+          "bootstrap": [
+          ],
+          "elastic": [
+          ],
+          "responsive": [
+            {
+              "id": 1,
+              "title": "DETOP ESSENCE ENTERPRISE LIMITED",
+              "text": "Explore a wide selection of high-quality wholesale agricultural products offered by DETOP ESSENCE ENTERPRISE LIMITED. From fresh fruits to premium grains, we source the finest produce to meet your business needs. With a focus on quality and reliability, we ensure satisfaction with every order.",
+              "imageUrl": "https://i.ibb.co/RPS4CN0/high-angle-farmland-view.jpg"
+            },
+            {
+              "id": 2,
+              "title": "Specialty Agricultural Goods",
+                "text": "Discover specialty agricultural goods that add value to your business. DETOP ESSENCE ENTERPRISE LIMITED provides a range of unique and niche agricultural products, including organic options, rare varieties, and specialty imports. Elevate your offerings and delight your customers with our diverse selection.",
+              "imageUrl": "https://i.ibb.co/gtFcmKC/gettyimages-1139556569-612x612.jpg"
+            },
+            {
+              "id": 3,
+              "title": "Bulk Agricultural Commodities",
+                "text": "Bulk agricultural commodities are our specialty. DETOP ESSENCE ENTERPRISE LIMITED offers a comprehensive range of wholesale agricultural goods, including grains, pulses, spices, and more. With competitive pricing and reliable supply chains, we are your trusted partner for bulk agricultural purchases.",
+              "imageUrl": "https://i.ibb.co/6NzJmkx/zura-narimanishvili-ovz-Li-BLMi0-I-unsplash.jpg"
+            }
+          ]
+        }
+      }
+  
+  

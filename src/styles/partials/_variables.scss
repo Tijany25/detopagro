@@ -1,0 +1,56 @@
+$unit: px;
+
+
+$black: #1E1D1D;
+$light-grey: rgba(4, 9, 33, 0.32);
+$light-blue: #ECF4FF;
+$blue: #0C5DFF;
+$dark: #040921;
+$text-grey: #59565F;
+$green: #12C48C;
+$olive-green: #219653;
+$orange: #FF8200;
+$red: #DD5147;
+$dim-red: #D8372C;
+$white: white;
+$light: #F8FAFC;
+$orange-red: linear-gradient(90deg, #FF8200 1.35%, #FF002B 100%);
+$light-red:  #FF002B;
+$light-orange: #FFEDD5;
+$light-grey: #B5B5C3;
+$dark-orange: #F2994A;
+$light-green: #DCFCE7;
+$cyan: #3CB9C9;
+
+$border-hard: #DAD8DF;
+$border-tint: #E9E9E9;
+$border-subtle: rgba(218, 216, 223, 0.5) ;
+$border-grey: #CBD5E1;
+
+
+$primary-light: $light-blue;
+$primary-dark: $dark;
+$primary-grey: $text-grey;
+$primary-blue: $blue;
+$primary-gradient: #FF002B;
+
+$bg-light: $light;
+$bg-dark: $dark;
+$bg-blue: $blue;
+$bg-gradient: $orange-red;
+
+$primary-bg: $bg-light;
+$secondary-bg: $bg-dark;
+$tertiary-bg: $bg-gradient;
+
+$largest: calc(30/16)+rem;
+$larger: calc(20/16)+rem;
+$large: calc(16/16)+rem;
+
+$medium: calc(14/16)+rem;
+$small: calc(12/16)+rem;
+$smaller: calc(10/16)+rem;
+
+$primary-font: 'Lato', sans-serif;
+$secondary-font: 'Lato', sans-serif;
+$tertiary-font: 'Lato', sans-serif;
