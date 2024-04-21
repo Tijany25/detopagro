@@ -4,6 +4,7 @@ import "../styles/styles.scss";
 import Navbar from "./modules/lib/components/navbar/Navbar";
 import Footer from "./modules/lib/components/footer/Footer";
 
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -33,6 +34,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
+  const adminPath = typeof window !== 'undefined' ? window.location.toString().includes("/admin") : null;
+  console.log('adminPath', adminPath);
+  
   return (
     <html lang="en">
       <head>
@@ -44,7 +49,8 @@ export default function RootLayout({
       <body className={`${inter.variable} ${roboto.variable} ${lora.variable}`}>
         <Navbar />
         {children}
-        <Footer />
+        
+       
       </body>
     </html>
   );

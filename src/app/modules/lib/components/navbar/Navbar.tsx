@@ -6,9 +6,10 @@ import { paths } from "../../utility/paths";
 import { usePathname } from 'next/navigation'
 
 
+
 const Navbar = () => {
   const [openNav, setOpenNav] = useState(false);
-  const pathname = usePathname()
+  const pathname = usePathname();
 
 
   useEffect(() => {
@@ -39,6 +40,19 @@ const Navbar = () => {
       <li className="p-1 font-semibold">
       <Link href={paths.contactUs} onClick={toggleNav} className={`flex items-center px-2 hover:text-green pointer ${paths.contactUs == pathname && 'text-green bold  border-b-2 border-deep-green'}`}> Contact Us</Link>
       </li>
+      <li className="p-1 font-semibold">
+       <Link href={paths.admin} onClick={toggleNav} className={`flex items-center px-2 hover:text-green pointer ${paths.admin == pathname && 'text-green bold  border-b-2 border-deep-green'}`}> Admin</Link>
+      </li>
+      {pathname.startsWith('/admin') && (
+        <>
+        <li className="p-1 font-semibold md:hidden">
+        <Link href={paths.admin} onClick={toggleNav} className={`flex items-center px-2 hover:text-green pointer ${paths.admin == pathname && 'text-green bold  border-b-2 border-deep-green'}`}> Admin Product</Link>
+       </li>
+       <li className="p-1 font-semibold md:hidden">
+        <Link href={paths.category} onClick={toggleNav} className={`flex items-center px-2 hover:text-green pointer ${paths.category == pathname && 'text-green bold  border-b-2 border-deep-green'}`}> Category</Link>
+       </li>
+        </>
+      )}
     </ul>
   );
 
@@ -58,14 +72,11 @@ const Navbar = () => {
           </div>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
-            {/* <div className="flex items-center gap-x-1">
+            <div className="flex items-center gap-x-1">
               <button className="text-deep-green bg-transparent border border-green rounded-md px-3 py-1 text-sm">
                 Log In
               </button>
-              <button className="bg-gradient-to-r from-blue-500 to-indigo-500 text-deep-green rounded-md px-3 py-1 text-sm">
-                Sign in
-              </button>
-            </div> */}
+            </div>
             <button
               className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
               onClick={toggleNav}

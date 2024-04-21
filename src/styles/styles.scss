@@ -37,10 +37,23 @@ body {
   width: 40rem;
   height: 25rem;
   border-radius: 20px;
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 900px) {
     width: 32rem;
     height: 20rem;
   }
+}
+.sidebar{
+  width: 18%;
+  @media screen and (max-width: 900px) {
+    width: 0%;
+  }
+}
+.adminLayout{
+  width: -webkit-fill-available;
+    margin: 21px 44px;
+    @media screen and (max-width: 900px) {
+      margin: 0px 15px;
+    }
 }
 .overlay {
   position: relative;

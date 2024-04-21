@@ -1,9 +1,13 @@
 import React from 'react'
 import ContactUs from '../modules/views/contact-us/ContactUs'
+import Footer from '../modules/lib/components/footer/Footer'
 
 const page = () => {
   return (
+    <>
     <ContactUs />
+    <Footer />
+    </>
   )
 }
 

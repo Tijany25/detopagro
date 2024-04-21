@@ -9,6 +9,8 @@ export const paths = {
     homepage: '/',
     contactUs: '/contactUs',
     products: '/products',
+    admin: '/admin',
+    category: '/admin/category'
 }
 
 export const protectedPaths = [
