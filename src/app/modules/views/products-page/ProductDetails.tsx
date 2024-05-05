@@ -59,7 +59,7 @@ const dataArray = dataString?.split(", ");
             <h2 className="text-lg font-semibold text-gray-800 mb-4">Product Features</h2>
             <ul className="list-disc pl-6">
                 {dataArray?.map((item: any) => (
-                    <li className="text-gray-700 mb-2">{item}</li>
+                    <li key={item} className="text-gray-700 mb-2">{item}</li>
                 ))}
             </ul>
             </div>

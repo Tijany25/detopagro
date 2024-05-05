@@ -73,7 +73,7 @@ const ProductsPage = () => {
             <h2 className="text-xl text-deep-green font-semibold mb-4">Categories</h2>
             <ul>
             {categoryItems.map((item: any, index) => (
-              <li className="mb-2">
+              <li key={item} className="mb-2">
               <label className="flex items-center">
                   <input
                     type="checkbox"
