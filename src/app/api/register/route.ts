@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as bcrypt from 'bcrypt';
-import User from '../../model/userModel'; // Assuming your user model path
-import connectDB from '../../db';
-import config from '../../../../../env';
+import User from '../model/userModel'; // Assuming your user model path
+import connectDB from '../db';
+import config from '../../../../env';
 
 
 export async function POST(req: NextRequest, res: NextResponse): Promise<NextResponse> {

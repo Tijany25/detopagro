@@ -1,9 +1,9 @@
 // api/login.ts
 import * as bcrypt from 'bcrypt';
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '../../db';
-import User from '../../model/userModel';
-import config from '../../../../../env';
+import connectDB from '../db';
+import User from '../model/userModel';
+import config from '../../../../env';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto'
 
