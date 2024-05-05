@@ -38,7 +38,7 @@ const ProductsPage = () => {
 
 
   const fetchProductData = async () => {
-		let url = `/api/products?q=${searchTerm}&category=${catName || selectedCategory}&limit=${limit}&page=${page}`; // Default URL
+		let url = `/api/products?q=${searchTerm}&category=${selectedCategory}&limit=${limit}&page=${page}`; // Default URL
 		try {
 		  const response = await axios.get(url);
 		  setProductItems(response?.data?.products);
