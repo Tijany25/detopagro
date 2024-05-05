@@ -3,6 +3,7 @@ import { Inter, Roboto, Lora } from 'next/font/google'
 import "../../styles/styles.scss";
 import Sidebar from "../modules/lib/components/Sidebar/Sidebar";
 import { useRouter } from "next/navigation";
+import { useEffect } from 'react';
 
 
 const inter = Inter({
@@ -31,7 +32,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const router = useRouter();
-  const session = localStorage.getItem('token');
+  let session;
+  useEffect(() => {
+   session = localStorage.getItem('token');
+  })
+  
   console.log('session', session);
   if (!session) {
     // Redirect to login page
