@@ -43,7 +43,10 @@ export default function RootLayout({
   console.log('session', session);
   if (!session) {
     // Redirect to login page
-    router.push('/login');
+    if (global?.window !== undefined) {
+      router.push('/login');
+    }
+    
   }
   
   return (
