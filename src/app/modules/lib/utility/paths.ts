@@ -1,6 +1,6 @@
 
 export const paths = {
-    login: '/auth/login',
+    login: '/login',
     signup: '/auth/signup',
     vendor_signup: '/auth/signup/vendor',
     storefront_about: '$storefront/about',

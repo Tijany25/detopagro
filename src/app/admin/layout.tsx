@@ -35,7 +35,7 @@ export default function RootLayout({
   console.log('session', session);
   if (!session) {
     // Redirect to login page
-    router.push('/auth/login');
+    router.push('/login');
   }
   
   return (

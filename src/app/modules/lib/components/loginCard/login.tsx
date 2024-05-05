@@ -35,7 +35,7 @@ const Login = () => {
       };
   
     try {
-      const response = await axios.post('/api/auth/login', userData);
+      const response = await axios.post('/api/login', userData);
       if (response.status === 200) {
         console.log(response);
         toast.success('Login successfully');
