@@ -35,7 +35,7 @@ export default function RootLayout({
   let session;
   useEffect(() => {
    session = localStorage.getItem('token');
-  }, [])
+  }, []);
   
   console.log('session', session);
   if (!session) {
