@@ -16,13 +16,20 @@ const ProductsPage = () => {
 	const [totalProducts, setTotalProducts] = useState(0);
   
   // const catName = localStorage.getItem('cat');
+  let catName: any;
+  if (global?.window !== undefined) {
+    catName = localStorage.getItem('cat');
+  }
 
-  // useEffect(() => {
-  //   if(catName) {
-  //     setSelectedCategory(catName);
-  //     localStorage.setItem('cat', '');
-  //   }
-  // }, [])
+  useEffect(() => {
+    if(catName) {
+      setSelectedCategory(catName);
+      if (global?.window !== undefined) {
+        localStorage.setItem('cat', '');
+      }
+      
+    }
+  }, [])
   
 
   
@@ -38,7 +45,7 @@ const ProductsPage = () => {
 
 
   const fetchProductData = async () => {
-		let url = `/api/products?q=${searchTerm}&category=${selectedCategory}&limit=${limit}&page=${page}`; // Default URL
+		let url = `/api/products?q=${searchTerm}&category=${catName || selectedCategory}&limit=${limit}&page=${page}`; // Default URL
 		try {
 		  const response = await axios.get(url);
 		  setProductItems(response?.data?.products);
