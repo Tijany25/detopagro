@@ -109,7 +109,7 @@ const AdminProducts = () => {
 		 Add Product
 	  </button>
 	  </div>
-	  <CreateSuperAdmin />
+	  {/* <CreateSuperAdmin /> */}
 
 	<div className="relative overflow-x-auto shadow-md sm:rounded-lg">
 		<div className="p-4">

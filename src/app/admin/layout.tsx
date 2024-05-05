@@ -31,17 +31,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const router = useRouter();
-  // let session;
-  // useEffect(() => {
-  //  session = localStorage.getItem('token');
-  // }, []);
+  const router = useRouter();
+  let session;
+  useEffect(() => {
+    if (global?.window !== undefined) {
+      session = localStorage.getItem('token');
+    }
+   
+  }, []);
   
-  // console.log('session', session);
-  // if (!session) {
-  //   // Redirect to login page
-  //   router.push('/login');
-  // }
+  console.log('session', session);
+  if (!session) {
+    // Redirect to login page
+    router.push('/login');
+  }
   
   return (
     <>
