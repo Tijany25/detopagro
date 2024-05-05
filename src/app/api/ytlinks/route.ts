@@ -58,19 +58,3 @@ export async function DELETE(req: NextRequest, res: NextResponse): Promise<NextR
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
-
-
-export default async (req: NextRequest, res: NextResponse) => {
-  const { method } = req;
-
-  switch (method) {
-    case 'GET':
-      return GET(req, res);
-    case 'POST':
-      return POST(req, res);
-    case 'DELETE':
-      return DELETE(req, res);
-    default:
-      return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
-  }
-};

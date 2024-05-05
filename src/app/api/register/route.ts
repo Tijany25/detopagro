@@ -36,18 +36,3 @@ export async function POST(req: NextRequest, res: NextResponse): Promise<NextRes
         return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
       }
 }
-
-
-
-
-// Wrap the handler with the connectDB function (assuming it returns a Promise)
-export default async (req: NextRequest, res: NextResponse) => {
-  const { method } = req;
-
-  switch (method) {
-    case 'POST':
-      return POST(req, res);
-    default:
-      return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
-  }
-};
