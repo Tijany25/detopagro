@@ -1,6 +1,78 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
+import CategoryModal from './categoryModal';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import EditCategoryModal from './editCategoryModal';
+import moment from 'moment';
+
 
 const AdminCategory = () => {
+
+	const [open, setOpen] = useState(false);
+	const [editData, setEditData] = useState<any>('');
+	const [openEdit, setOpenEdit] = useState(false);
+	const [searchTerm, setSearchTerm] = useState('');
+	const [categortItem, setCategoryItem] = useState([])
+
+
+	const fetchProduct = async () => {
+		let url = '/api/category'; // Default URL
+
+		if (searchTerm) {
+			// Build URL with search query parameter
+			url += `?q=${searchTerm}`;
+		}
+		try {
+		  const response = await axios.get(url);
+		  setCategoryItem(response.data);
+		} catch (error) {
+		  console.error('Error fetching products items:', error);
+		}
+	  };
+	useEffect(() => {
+		fetchProduct();
+	  }, [searchTerm]);
+	
+
+
+  const handleOpenModal = () => {
+    setOpen(!open);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleCloseEditModal = () => {
+    setOpenEdit(false);
+	setEditData('');
+  };
+  const handleEdit = (id: any) => {
+	const data = categortItem?.filter((item: any) => item._id === id);
+	console.log(data);
+	setEditData(data);
+	setOpenEdit(!openEdit);
+  }
+
+  const handleDelete = async (id: any) => {
+  
+    try {
+      const response = await axios.delete(`/api/category?id=${id}`);
+      if (response.status === 200) {
+		toast.success('Category deleted successfully');
+		fetchProduct();
+      } else {
+		toast.error('Error deleting category');
+      }
+    } catch (error) {
+		toast.error('Error deleting category');
+    }
+  };
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	setSearchTerm(event.target.value);
+  };
   return (
     <>
     <div className="mt-24">
@@ -11,9 +83,11 @@ const AdminCategory = () => {
         <CardTable color="dark" />
       </div> */}
       <div className="w-full mx-auto ">
+	  <CategoryModal modalOpen={open} handleCloseModal={handleClose} data="data" refetch={fetchProduct} />
+	  <EditCategoryModal modalOpen={openEdit} handleCloseModal={handleCloseEditModal} data={editData} refetch={fetchProduct} />
 	  <div className='flex justify-between items-center mt-8 mb-6'>
 	  <h2 className="text-xl md:text-2xl font-semibold  text-deep-green">Products Category</h2>
-	  <button className="border border-deep-green hover:bg-green hover:text-white text-deep-green font-bold py-2 px-2 md:px-4 rounded">
+	  <button onClick={() => handleOpenModal()} className="border bg-green border-deep-green hover:bg-white hover:text-deep-green text-white font-bold py-2 px-2 md:px-4 rounded">
 		 Add Category
 	  </button>
 	  </div>
@@ -30,7 +104,7 @@ const AdminCategory = () => {
 							clip-rule="evenodd"></path>
 					</svg>
 				</div>
-				<input type="text" id="table-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items" />
+				<input value={searchTerm} onChange={(e) =>handleSearchChange(e)} type="text" id="table-search" className="bg-gray-50 border border-gray-300 text-deep-green text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items" />
         </div>
 			</div>
 			<table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -46,21 +120,16 @@ const AdminCategory = () => {
 							Category name
 						</th>
 						<th scope="col" className="px-6 py-3">
-							Color
+							Date Created
 						</th>
 						<th scope="col" className="px-6 py-3">
-							Category
-						</th>
-						<th scope="col" className="px-6 py-3">
-							Price
-						</th>
-						<th scope="col" className="px-6 py-3">
-							<span className="sr-only">Edit</span>
+							<span className="sr-only">Action</span>
 						</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr
+				{categortItem?.map(({name, createdAt, location, _id}) => (
+						<tr
 						className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 						<td className="w-4 p-4">
 							<div className="flex items-center">
@@ -69,68 +138,21 @@ const AdminCategory = () => {
 							</div>
 						</td>
 						<th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-							Apple MacBook Pro 17
+							{name}
 						</th>
 						<td className="px-6 py-4">
-							Sliver
+							{moment(createdAt).format("MMM Do YY")}
 						</td>
-						<td className="px-6 py-4">
-							Laptop
-						</td>
-						<td className="px-6 py-4">
-							$2999
-						</td>
-						<td className="px-6 py-4 text-right">
-							<a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-						</td>
-					</tr>
-					<tr
-						className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-						<td className="w-4 p-4">
-							<div className="flex items-center">
-								<input id="checkbox-table-search-2" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-								<label htmlFor="checkbox-table-search-2" className="sr-only">checkbox</label>
-							</div>
-						</td>
-						<th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-							Microsoft Surface Pro
-						</th>
-						<td className="px-6 py-4">
-							White
-						</td>
-						<td className="px-6 py-4">
-							Laptop PC
-						</td>
-						<td className="px-6 py-4">
-							$1999
-						</td>
-						<td className="px-6 py-4 text-right">
-							<a href="#" className="font-medium text-blue-600 hover:underline">Edit</a>
+						<td className="px-6 py-4 text-right flex gap-3">
+						<button onClick={() => handleEdit(_id)} className="border bg-green border-deep-green hover:bg-white hover:text-deep-green text-white font-bold py-2 px-4 rounded">
+							Edit
+						</button>
+						<button onClick={() => handleDelete(_id)} className="border bg-red hover:bg-white hover:text-deep-green text-white font-bold py-2 px-4 rounded">
+						 	Delete
+						</button>
 						</td>
 					</tr>
-					<tr className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-						<td className="w-4 p-4">
-							<div className="flex items-center">
-								<input id="checkbox-table-search-3" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-								<label htmlFor="checkbox-table-search-3" className="sr-only">checkbox</label>
-							</div>
-						</td>
-						<th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-							Magic Mouse 2
-						</th>
-						<td className="px-6 py-4">
-							Black
-						</td>
-						<td className="px-6 py-4">
-							Accessories
-						</td>
-						<td className="px-6 py-4">
-							$99
-						</td>
-						<td className="px-6 py-4 text-right">
-							<a href="#" className="font-medium text-blue-600  hover:underline">Edit</a>
-						</td>
-					</tr>
+					))}
 				</tbody>
 			</table>
 		</div>

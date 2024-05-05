@@ -19,7 +19,7 @@ const config: Config = {
       'light-green': '#598355',
       'deep-green': '#32492F',
       'black': '#000000',
-      'midnight': '#121063',
+      'deepWhite': 'rgb(241 245 249)',
       'metal': '#565584',
       'tahiti': '#3ab7bf',
       'silver': '#ecebff',

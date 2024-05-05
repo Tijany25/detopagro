@@ -2,8 +2,10 @@ import Image from "next/image";
 import Navbar from "./modules/lib/components/navbar/Navbar";
 import LandingPage from "./modules/views/landing-page/landingPage";
 import Footer from "./modules/lib/components/footer/Footer";
+import connectDB from "./api/db";
 
 export default function Home() {
+  connectDB();
   const adminPath = typeof window !== 'undefined' ? window.location.toString().includes("/admin") : null;
   console.log('adminPath', adminPath);
   return (

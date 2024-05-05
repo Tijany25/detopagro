@@ -26,8 +26,8 @@ const Sidebar = () => {
                 className={
                   "text-xs uppercase py-3 font-bold block " +
                   (pathname !==  "/admin"
-                    ? "text-lightBlue-500 hover:text-lightBlue-600"
-                    : "text-blueGray-700 hover:text-blueGray-500")
+                  ? "text-deep-green hover:text-lightBlue-600"
+                  : "bg-green text-white")
                 }
                 >
                   
@@ -48,8 +48,8 @@ const Sidebar = () => {
                  className={
                   "text-xs uppercase py-3 font-bold block " +
                   (pathname !== "/admin/category"
-                    ? "text-lightBlue-500 hover:text-lightBlue-600"
-                    : "text-blueGray-700 hover:text-blueGray-500")
+                  ? "text-deep-green hover:text-lightBlue-600"
+                  : "bg-green text-white")
                 }
                 >
                 
@@ -62,6 +62,28 @@ const Sidebar = () => {
                       }
                     ></i>{" "}
                     Category
+                </Link>
+              </li>
+
+              <li className="items-center">
+                <Link href="/admin/youtubeLinks" 
+                 className={
+                  "text-xs items-center uppercase py-3 font-bold block " +
+                  (pathname !== "/admin/youtubeLinks"
+                    ? "text-deep-green hover:text-lightBlue-600"
+                    : "bg-green text-white")
+                }
+                >
+                
+                    <i
+                      className={
+                        "fas fa-tools mr-2 text-sm " +
+                        (pathname !== "/admin/youtubeLinks"
+                          ? "opacity-75"
+                          : "text-blueGray-300")
+                      }
+                    ></i>{" "}
+                    Youtube Videos
                 </Link>
               </li>
 

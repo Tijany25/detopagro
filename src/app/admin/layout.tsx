@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+'use client'
 import { Inter, Roboto, Lora } from 'next/font/google'
 import "../../styles/styles.scss";
 import Sidebar from "../modules/lib/components/Sidebar/Sidebar";
-import Footer from "../modules/lib/components/footer/Footer";
+import { useRouter } from "next/navigation";
+
 
 const inter = Inter({
   subsets: ['latin'],
@@ -23,23 +24,24 @@ const lora = Lora({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  title: "Detopagro",
-  description: "DETOP ESSENCE ENTERPRISE LIMITED",
-};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
+  const session = localStorage.getItem('token');
+  console.log('session', session);
+  if (!session) {
+    // Redirect to login page
+    router.push('/auth/login');
+  }
+  
   return (
     <>
         
-     
       <div className="bg-blueGray-100 flex">
-      {/*  */}
-        {/* Header */}
         <div className="sidebar">
           <Sidebar />
         </div>

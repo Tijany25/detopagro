@@ -40,9 +40,6 @@ const Navbar = () => {
       <li className="p-1 font-semibold">
       <Link href={paths.contactUs} onClick={toggleNav} className={`flex items-center px-2 hover:text-green pointer ${paths.contactUs == pathname && 'text-green bold  border-b-2 border-deep-green'}`}> Contact Us</Link>
       </li>
-      <li className="p-1 font-semibold">
-       <Link href={paths.admin} onClick={toggleNav} className={`flex items-center px-2 hover:text-green pointer ${paths.admin == pathname && 'text-green bold  border-b-2 border-deep-green'}`}> Admin</Link>
-      </li>
       {pathname.startsWith('/admin') && (
         <>
         <li className="p-1 font-semibold md:hidden">
@@ -72,11 +69,11 @@ const Navbar = () => {
           </div>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
-            <div className="flex items-center gap-x-1">
+            {/* <div className="flex items-center gap-x-1">
               <button className="text-deep-green bg-transparent border border-green rounded-md px-3 py-1 text-sm">
                 Log In
               </button>
-            </div>
+            </div> */}
             <button
               className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
               onClick={toggleNav}

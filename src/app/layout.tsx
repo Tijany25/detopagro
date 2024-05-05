@@ -3,6 +3,7 @@ import { Inter, Roboto, Lora } from 'next/font/google'
 import "../styles/styles.scss";
 import Navbar from "./modules/lib/components/navbar/Navbar";
 import Footer from "./modules/lib/components/footer/Footer";
+import { Toaster } from "react-hot-toast";
 
 
 const inter = Inter({
@@ -47,6 +48,7 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={`${inter.variable} ${roboto.variable} ${lora.variable}`}>
+      <Toaster />
         <Navbar />
         {children}
         
