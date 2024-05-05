@@ -15,14 +15,14 @@ const ProductsPage = () => {
 	const [page, setPage] = useState(1)
 	const [totalProducts, setTotalProducts] = useState(0);
   
-  const catName = localStorage.getItem('cat');
+  // const catName = localStorage.getItem('cat');
 
-  useEffect(() => {
-    if(catName) {
-      setSelectedCategory(catName);
-      localStorage.setItem('cat', '');
-    }
-  }, [])
+  // useEffect(() => {
+  //   if(catName) {
+  //     setSelectedCategory(catName);
+  //     localStorage.setItem('cat', '');
+  //   }
+  // }, [])
   
 
   
