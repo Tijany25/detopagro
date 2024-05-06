@@ -49,7 +49,6 @@ const AdminYtLink = () => {
   };
   const handleEdit = (id: any) => {
 	const data = ytItem?.filter((item: any) => item._id === id);
-	console.log(data);
 	setEditData(data);
 	setOpenEdit(!openEdit);
   }

@@ -2,7 +2,6 @@ import React from 'react'
 
 const TableRow = (items: any) => {
     const { name } = items;
-    console.log('ffffffff', items);
     const itemsjj = [
         { imageUrl: 'https://i.ibb.co/gtFcmKC/gettyimages-1139556569-612x612.jpg', title: 'Category 1', description: 'Description 1' },
         { imageUrl: 'https://i.ibb.co/gtFcmKC/gettyimages-1139556569-612x612.jpg', title: 'Category 11', description: 'Description 1' },

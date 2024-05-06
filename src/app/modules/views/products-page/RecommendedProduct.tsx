@@ -9,7 +9,6 @@ const RecommendedProduct = (category: any) => {
   const fetchRecProductData = async () => {
     try {
       const response = await axios.get(`/api/products?category=${category}`);
-      console.log(response);
       
       setRecProduct(response.data);
     } catch (error) {
@@ -21,7 +20,6 @@ const RecommendedProduct = (category: any) => {
   useEffect(() => {
     fetchRecProductData();
   },[]);
-  console.log(recProduct);
 
   return (
     <>

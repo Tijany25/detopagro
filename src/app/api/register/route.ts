@@ -1,21 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as bcrypt from 'bcrypt';
-import User from '../model/userModel'; // Assuming your user model path
+import User from '../model/userModel';
 import connectDB from '../db';
 import config from '../../../../env';
 
 
 export async function POST(req: NextRequest, res: NextResponse): Promise<NextResponse> {
   try {
-        await connectDB(); // Connect to database
+        await connectDB();
     
         const superadminUsername = config.SUPERADMIN_USERNAME;
         const superadminPassword = config.SUPERADMIN_PASSWORD;
 
-        console.log(superadminUsername, superadminPassword);
         
-        
-    
         if (!superadminUsername || !superadminPassword) {
           return NextResponse.json({ error: 'Missing superadmin credentials in environment variables' }, { status: 500 });
         }

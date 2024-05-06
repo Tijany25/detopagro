@@ -50,7 +50,6 @@ const AdminCategory = () => {
   };
   const handleEdit = (id: any) => {
 	const data = categortItem?.filter((item: any) => item._id === id);
-	console.log(data);
 	setEditData(data);
 	setOpenEdit(!openEdit);
   }

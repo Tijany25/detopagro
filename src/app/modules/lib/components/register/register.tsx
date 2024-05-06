@@ -8,10 +8,11 @@ const CreateSuperAdmin: React.FC = () => {
 
   const handleCreate = async () => {
     try {
-      const response = await axios.post('/api/auth/register');
+      const response = await axios.post('/api/register');
       setIsCreated(true);
-      toast.success('Link saved successfully');
-      console.log(response.data); // Log response for debugging purposes
+      console.log(response);
+      
+      toast.success('Registration successfully');
     } catch (error) {
         console.log(error);
         

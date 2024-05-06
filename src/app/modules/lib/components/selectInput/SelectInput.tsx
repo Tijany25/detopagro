@@ -9,7 +9,6 @@ interface SelectInputFieldProps {
 }
 
 const SelectInputField: React.FC<SelectInputFieldProps> = ({ label, value, options, onChange, error }) => {
-  console.log(options);
   
   return (
     <div className="mb-4">

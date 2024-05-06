@@ -22,7 +22,7 @@ const AdminProducts = () => {
 
 
 	const fetchProduct = async () => {
-		let url = `/api/products?q=${searchTerm}&limit=${limit}&page=${page}`; // Default URL
+		let url = `/api/products?q=${searchTerm}&limit=${limit}&page=${page}`;
 		try {
 		  const response = await axios.get(url);
 		  setProductItems(response?.data?.products);
@@ -47,7 +47,6 @@ const AdminProducts = () => {
 		fetchData();
 	  }, []);
   
-	  console.log('categoryItems', productItems);
 
   const handleOpenModal = () => {
     setOpen(!open);
@@ -67,7 +66,6 @@ const AdminProducts = () => {
   };
   const handleEdit = (id: any) => {
 	const data = productItems?.filter((item: any) => item._id === id);
-	console.log(data);
 	setEditData(data);
 	setOpenEdit(!openEdit);
   }
@@ -93,12 +91,6 @@ const AdminProducts = () => {
   return (
     <>
     <div className="mt-24">
-      {/* <div className="w-full mb-12 px-4">
-        <CardTable />
-      </div>
-      <div className="w-full mb-12 px-4">
-        <CardTable color="dark" />
-      </div> */}
       <div className="w-full mx-auto ">
       <ProductModal modalOpen={open} handleCloseModal={handleClose} data="" category={categoryItems} />
 	  <EditProductModal modalOpen={openEdit} handleCloseModal={handleCloseEditModal} data={editData} category={categoryItems} refetch={fetchProduct}/>

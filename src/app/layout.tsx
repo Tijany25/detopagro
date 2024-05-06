@@ -37,7 +37,6 @@ export default function RootLayout({
 }>) {
   
   const adminPath = typeof window !== 'undefined' ? window.location.toString().includes("/admin") : null;
-  console.log('adminPath', adminPath);
   
   return (
     <html lang="en">

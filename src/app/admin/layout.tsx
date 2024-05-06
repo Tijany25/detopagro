@@ -33,14 +33,10 @@ export default function RootLayout({
 }>) {
   const router = useRouter();
   let session;
-  useEffect(() => {
-    if (global?.window !== undefined) {
-      session = localStorage.getItem('token');
-    }
-   
-  }, []);
+  if(global?.window !== undefined){
+    session = localStorage.getItem('token');
+  }
   
-  console.log('session', session);
   if (!session) {
     // Redirect to login page
     if (global?.window !== undefined) {

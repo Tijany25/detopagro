@@ -7,7 +7,6 @@ import connectDB from "./api/db";
 export default function Home() {
   connectDB();
   const adminPath = typeof window !== 'undefined' ? window.location.toString().includes("/admin") : null;
-  console.log('adminPath', adminPath);
   return (
     <>
     <main className="flex min-h-screen flex-col items-center justify-between py-1">

@@ -21,12 +21,10 @@ export async function POST(req: NextRequest, res: NextResponse) {
   try {
     await connectDB();
     const user = await User.findOne({ username });
-    console.log(user);
     
     if (!user) return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
 
     const match = await bcrypt.compareSync(password, user.password);
-    console.log(password, user.password, match);
     
     if (!match) return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
     const token = jwt.sign({ userId: user._id }, secret, { expiresIn: '1h' });
