@@ -9,9 +9,8 @@ export async function POST(req: NextRequest, res: NextResponse): Promise<NextRes
   try {
         await connectDB();
     
-        const superadminUsername = config.SUPERADMIN_USERNAME;
-        const superadminPassword = config.SUPERADMIN_PASSWORD;
-
+        const superadminUsername = process.env.SUPERADMIN_USERNAME;
+        const superadminPassword = process.env.SUPERADMIN_PASSWORD;
         
         if (!superadminUsername || !superadminPassword) {
           return NextResponse.json({ error: 'Missing superadmin credentials in environment variables' }, { status: 500 });
@@ -32,4 +31,4 @@ export async function POST(req: NextRequest, res: NextResponse): Promise<NextRes
         console.error('Error creating super admin:', error);
         return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
       }
-}
+};

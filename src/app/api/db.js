@@ -1,7 +1,7 @@
 "use server"
 import mongoose from 'mongoose';
 
-const connectionString = `mongodb+srv://detopagro:DBm91O9ZebEfBmUE@cluster0.deqckxh.mongodb.net/detopagro?retryWrites=true&w=majority&appName=Cluster0`;
+const connectionString = process.env.MONGO_URL;
 
 const connectDB = async () => {
   try {

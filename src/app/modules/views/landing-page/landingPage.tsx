@@ -45,7 +45,7 @@ const LandingPage = () => {
       <div className="maxWidth w-full px-4 py-2">
         <div className='px-6 lg:px-12'>
         <div className="text-3xl py-2 text-green font-bold mb-4">Product Categories</div>
-        <div className="w-full grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="w-full mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {categoryItems?.map((item: any, index: any) => (
             <CategoryCard key={index} imageUrl={item.imageUrl} title={item.name} description={item.description} />
           ))}

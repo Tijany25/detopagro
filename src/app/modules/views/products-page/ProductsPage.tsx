@@ -4,6 +4,7 @@ import ProductCard from '../../lib/components/product-card/ProductCard'
 import axios from 'axios';
 import Pagination from '../../lib/components/pagination/Pagination';
 import { useParams, useRouter } from 'next/navigation';
+import { IoIosArrowForward } from 'react-icons/io';
 
 
 const ProductsPage = () => {
@@ -67,6 +68,9 @@ const ProductsPage = () => {
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
     };
+    const toggleSelectedCategory = (category: any) => {
+      setSelectedCategory(selectedCategory === category ? '' : category);
+  };
   return (
         <div className='pt-24 pb-11'>
            <div className="h-96">
@@ -74,23 +78,26 @@ const ProductsPage = () => {
             </div>
             <div className='maxWidth mx-auto '>
     
-      <div className="container mx-auto px-7 mt-10 lg:flex gap-10">
-        <div className="w-60">
-        <div className="bg-white rounded-lg shadow-lg py-4 px-5 min-h-min hidden md:grid">
-            <h2 className="text-xl text-deep-green font-semibold mb-4">Categories</h2>
+      <div className="container mx-auto px-7 mt-5 lg:flex gap-10">
+        <div className="w-80 mt-24">
+        <div className="bg-white rounded-lg shadow-lg min-h-min hidden md:grid">
+            <h2 className="text-xl py-2 px-5 bg-green text-white font-semibold mb-4">Categories</h2>
             <ul>
             {categoryItems.map((item: any, index) => (
-              <li key={item} className="mb-2">
-              <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    className="mr-2 cursor-pointer"
-                    checked={selectedCategory === item.name}
-                    onChange={() => setSelectedCategory(item.name || null)} 
-                    />
-                  <span className="text-blue-500 hover:underline">{item?.name}</span>
+              <li key={item} className="mb-2 px-5">
+              <label className="flex text-deep-green items-center justify-between">
+                  <div className="flex items-center cursor-pointer">
+                      <input
+                          type="checkbox"
+                          className="mr-2"
+                          checked={selectedCategory === item.name}
+                          onChange={() => toggleSelectedCategory(item.name || null)}
+                      />
+                      <span className="text-blue-500 hover:underline">{item?.name}</span>
+                  </div>
+                  <div className='ml-auto cursor-pointer'><IoIosArrowForward /></div>
               </label>
-              </li>
+          </li>
             ))}
             </ul>
         </div>
@@ -99,8 +106,8 @@ const ProductsPage = () => {
 
     
         <div className="">
-          <div className='lg:flex justify-between'>
-          <h2 className="text-3xl text-deep-green font-semibold lg:mb-4">Products</h2>
+          <div className='lg:flex items-center justify-between'>
+          <h2 className="text-3xl text-deep-green font-semibold lg:mb-2">Products</h2>
           <div className="p-2 lg:p-4">
             <label htmlFor="table-search" className="sr-only">Search</label>
             <div className="relative mt-1">
@@ -117,7 +124,7 @@ const ProductsPage = () => {
           </div>
 
           </div>
-          <div className="w-full mt-10 grid lg:grid-cols-4 gap-8">
+          <div className="w-full mt-4 grid lg:grid-cols-4 gap-8">
             {productItems.map((item: any, index) => (
               <ProductCard key={index} imageUrl={item.imageUrl} title={item.name} description={item.description} _id={item._id} />
             ))}
