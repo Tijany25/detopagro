@@ -26,7 +26,7 @@ const Sidebar = () => {
                 className={
                   "text-xs uppercase py-3 font-bold block " +
                   (pathname !==  "/admin"
-                  ? "text-deep-green hover:text-lightBlue-600"
+                  ? "text-deep-green hover:text-white hover:bg-green"
                   : "bg-green text-white")
                 }
                 >
@@ -48,7 +48,7 @@ const Sidebar = () => {
                  className={
                   "text-xs uppercase py-3 font-bold block " +
                   (pathname !== "/admin/category"
-                  ? "text-deep-green hover:text-lightBlue-600"
+                  ? "text-deep-green hover:text-white hover:bg-green"
                   : "bg-green text-white")
                 }
                 >
@@ -70,7 +70,7 @@ const Sidebar = () => {
                  className={
                   "text-xs items-center uppercase py-3 font-bold block " +
                   (pathname !== "/admin/youtubeLinks"
-                    ? "text-deep-green hover:text-lightBlue-600"
+                    ? "text-deep-green hover:text-white hover:bg-green"
                     : "bg-green text-white")
                 }
                 >

@@ -26,27 +26,27 @@ const Navbar = () => {
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-24">
       <li className="p-1 font-semibold">
-      <Link href={paths.homepage} onClick={toggleNav} className={`flex items-center px-2 hover:text-green pointer ${paths.homepage == pathname && 'text-green bold  border-b-2 border-deep-green'}`}>Home</Link>
+      <Link href={paths.homepage} onClick={toggleNav} className={`flex items-center px-2 hover:border-b-2 pointer ${paths.homepage == pathname && 'text-green bold  border-b-2 border-deep-green'}`}>Home</Link>
       </li>
       <li className="p-1 font-semibold">
-      <Link href={paths.products} onClick={toggleNav} className={`flex items-center px-2 hover:text-green pointer ${paths.products == pathname && 'text-green bold  border-b-2 border-deep-green'}`}>Products</Link>
+      <Link href={paths.products} onClick={toggleNav} className={`flex items-center px-2 hover:border-b-2 pointer ${paths.products == pathname && 'text-green bold  border-b-2 border-deep-green'}`}>Products</Link>
         {/* <a href="#" className="flex items-center">
           Products
         </a> */}
       </li>
       <li className="p-1 font-semibold">
-      <Link href={paths.about} onClick={toggleNav} className={`flex items-center px-2 hover:text-green pointer ${paths.about == pathname && 'text-green bold  border-b-2 border-deep-green'}`}> About Us</Link>
+      <Link href={paths.about} onClick={toggleNav} className={`flex items-center px-2 hover:border-b-2 pointer ${paths.about == pathname && 'text-green bold  border-b-2 border-deep-green'}`}> About Us</Link>
       </li>
       <li className="p-1 font-semibold">
-      <Link href={paths.contactUs} onClick={toggleNav} className={`flex items-center px-2 hover:text-green pointer ${paths.contactUs == pathname && 'text-green bold  border-b-2 border-deep-green'}`}> Contact Us</Link>
+      <Link href={paths.contactUs} onClick={toggleNav} className={`flex items-center px-2 hover:border-b-2 pointer ${paths.contactUs == pathname && 'text-green bold  border-b-2 border-deep-green'}`}> Contact Us</Link>
       </li>
       {pathname.startsWith('/admin') && (
         <>
         <li className="p-1 font-semibold md:hidden">
-        <Link href={paths.admin} onClick={toggleNav} className={`flex items-center px-2 hover:text-green pointer ${paths.admin == pathname && 'text-green bold  border-b-2 border-deep-green'}`}> Admin Product</Link>
+        <Link href={paths.admin} onClick={toggleNav} className={`flex items-center px-2 hover:border-b-2 pointer ${paths.admin == pathname && 'text-green bold  border-b-2 border-deep-green'}`}> Admin Product</Link>
        </li>
        <li className="p-1 font-semibold md:hidden">
-        <Link href={paths.category} onClick={toggleNav} className={`flex items-center px-2 hover:text-green pointer ${paths.category == pathname && 'text-green bold  border-b-2 border-deep-green'}`}> Category</Link>
+        <Link href={paths.category} onClick={toggleNav} className={`flex items-center px-2 hover:border-b-2 pointer ${paths.category == pathname && 'text-green bold  border-b-2 border-deep-green'}`}> Category</Link>
        </li>
         </>
       )}
