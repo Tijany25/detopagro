@@ -5,6 +5,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import EditCategoryModal from './editCategoryModal';
 import moment from 'moment';
+import Image from '@/app/modules/lib/components/image/Image';
 
 
 const AdminCategory = () => {
@@ -13,24 +14,27 @@ const AdminCategory = () => {
 	const [editData, setEditData] = useState<any>('');
 	const [openEdit, setOpenEdit] = useState(false);
 	const [searchTerm, setSearchTerm] = useState('');
-	const [categortItem, setCategoryItem] = useState([])
+	const [categortItem, setCategoryItem] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 
 	const fetchProduct = async () => {
-		let url = '/api/category'; // Default URL
+		let url = '/api/category';
 
 		if (searchTerm) {
-			// Build URL with search query parameter
 			url += `?q=${searchTerm}`;
 		}
 		try {
 		  const response = await axios.get(url);
 		  setCategoryItem(response.data);
+		setLoading(false);
 		} catch (error) {
 		  console.error('Error fetching products items:', error);
+		setLoading(false);
 		}
 	  };
 	useEffect(() => {
+		setLoading(true);
 		fetchProduct();
 	  }, [searchTerm]);
 	
@@ -106,6 +110,16 @@ const AdminCategory = () => {
 				<input value={searchTerm} onChange={(e) =>handleSearchChange(e)} type="text" id="table-search" className="bg-gray-50 border border-gray-300 text-deep-green text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items" />
         </div>
 			</div>
+			{loading ? (
+					<div className='flex w-full justify-center mt-10'>
+					<Image
+						className='w-fit lg:w-fit'
+						src='loaderImg.gif'
+						alt='images'
+						type='image'
+					/>
+					</div>
+				) : (
 			<table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 				<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 					<tr>
@@ -155,6 +169,7 @@ const AdminCategory = () => {
 					))}
 				</tbody>
 			</table>
+				)}
 		</div>
 
 		

@@ -5,6 +5,7 @@ import axios from 'axios';
 import Pagination from '../../lib/components/pagination/Pagination';
 import { useParams, useRouter } from 'next/navigation';
 import { IoIosArrowForward } from 'react-icons/io';
+import Image from '../../lib/components/image/Image';
 
 
 const ProductsPage = () => {
@@ -15,6 +16,7 @@ const ProductsPage = () => {
 	const [limit, setLimit] = useState(10);
 	const [page, setPage] = useState(1)
 	const [totalProducts, setTotalProducts] = useState(0);
+  const [loading, setLoading] = useState(false);
   
   // const catName = localStorage.getItem('cat');
   let catName: any;
@@ -51,6 +53,7 @@ const ProductsPage = () => {
 		  const response = await axios.get(url);
 		  setProductItems(response?.data?.products);
 		  setTotalProducts(response?.data?.totalProducts);
+      setLoading(false);
 		} catch (error) {
 		  console.error('Error fetching products items:', error);
 		}
@@ -62,6 +65,7 @@ const ProductsPage = () => {
 
   }, [selectedCategory]);
   useEffect(() => {
+    setLoading(true)
     fetchProductData();
 
   }, [selectedCategory, page]);
@@ -124,11 +128,22 @@ const ProductsPage = () => {
           </div>
 
           </div>
-          <div className="w-full mt-4 grid lg:grid-cols-4 gap-8">
-            {productItems.map((item: any, index) => (
-              <ProductCard key={index} imageUrl={item.imageUrl} title={item.name} description={item.description} _id={item._id} />
-            ))}
-          </div>
+          {loading ? (
+            <div className='flex justify-center mt-10'>
+              <Image
+                  className='w-fit lg:w-fit'
+                  src='loaderImg.gif'
+                  alt='images'
+                  type='image'
+              />
+              </div>
+          ) : (
+            <div className="w-full mt-4 grid lg:grid-cols-4 gap-8">
+              {productItems.map((item: any, index) => (
+                <ProductCard key={index} imageUrl={item.imageUrl} title={item.name} description={item.description} _id={item._id} />
+              ))}
+            </div>
+          )}
           <div className='p-8'>
             <Pagination totalProducts={totalProducts} limit={limit} page={page} setPage={setPage} />
           </div>

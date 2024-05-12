@@ -4,6 +4,7 @@ import CategoryModal from './ytLinksModal';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import moment from 'moment';
+import Image from '@/app/modules/lib/components/image/Image';
 
 
 const AdminYtLink = () => {
@@ -12,7 +13,8 @@ const AdminYtLink = () => {
 	const [editData, setEditData] = useState<any>('');
 	const [openEdit, setOpenEdit] = useState(false);
 	const [searchTerm, setSearchTerm] = useState('');
-	const [ytItem, setYtItem] = useState([])
+	const [ytItem, setYtItem] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 
 	const fetchLink = async () => {
@@ -25,11 +27,15 @@ const AdminYtLink = () => {
 		try {
 		  const response = await axios.get(url);
 		  setYtItem(response.data);
+		setLoading(false);
 		} catch (error) {
 		  console.error('Error fetching products items:', error);
+		setLoading(false);
+
 		}
 	  };
 	useEffect(() => {
+		setLoading(true);
 		fetchLink();
 	  }, []);
 	
@@ -83,6 +89,17 @@ const AdminYtLink = () => {
 	  </button>
 	  </div>
 
+
+	  {loading ? (
+		<div className='flex w-full justify-center mt-10'>
+		<Image
+			className='w-fit lg:w-fit'
+			src='loaderImg.gif'
+			alt='images'
+			type='image'
+		/>
+		</div>
+	) : (
 	<div className="relative overflow-x-auto shadow-md sm:rounded-lg">
 			<table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 				<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -131,7 +148,7 @@ const AdminYtLink = () => {
 				</tbody>
 			</table>
 		</div>
-
+				)}
 		
 	</div>
     </div>

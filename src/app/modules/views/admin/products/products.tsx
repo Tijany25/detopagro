@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import moment from 'moment';
 import Pagination from '@/app/modules/lib/components/pagination/Pagination';
 import CreateSuperAdmin from '@/app/modules/lib/components/register/register';
+import Image from '@/app/modules/lib/components/image/Image';
 
 
 const AdminProducts = () => {
@@ -19,6 +20,7 @@ const AdminProducts = () => {
 	const [limit, setLimit] = useState(10);
 	const [page, setPage] = useState(1)
 	const [totalProducts, setTotalProducts] = useState(0);
+	const [loading, setLoading] = useState(false);
 
 
 	const fetchProduct = async () => {
@@ -27,11 +29,14 @@ const AdminProducts = () => {
 		  const response = await axios.get(url);
 		  setProductItems(response?.data?.products);
 		  setTotalProducts(response?.data?.totalProducts);
+		 setLoading(false);
 		} catch (error) {
 		  console.error('Error fetching products items:', error);
+		 setLoading(false);
 		}
 	  };
 	useEffect(() => {
+		setLoading(true);
 		fetchProduct();
 	}, [searchTerm, page]);
 	  useEffect(() => {
@@ -118,6 +123,16 @@ const AdminProducts = () => {
 				<input value={searchTerm} onChange={(e) =>handleSearchChange(e)} type="text" id="table-search" className="bg-gray-50 border border-gray-300 text-deep-green text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items" />
         </div>
 			</div>
+			{loading ? (
+					<div className='flex w-full justify-center mt-10'>
+					<Image
+						className='w-fit lg:w-fit'
+						src='loaderImg.gif'
+						alt='images'
+						type='image'
+					/>
+					</div>
+				) : (
 			<table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 				<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 					<tr>
@@ -144,7 +159,7 @@ const AdminProducts = () => {
 						</th>
 					</tr>
 				</thead>
-				<tbody>
+					<tbody>
 					{productItems?.map(({name, category, createdAt, location, _id}) => (
 						<tr
 						key={name}
@@ -178,7 +193,10 @@ const AdminProducts = () => {
 					</tr>
 					))}
 				</tbody>
+				
 			</table>
+				)}
+
 			<div className='py-10 px-5'>
 				<Pagination totalProducts={totalProducts} limit={limit} page={page} setPage={setPage} />
 			</div>

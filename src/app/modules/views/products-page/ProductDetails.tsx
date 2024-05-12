@@ -4,6 +4,7 @@ import ProductCard from '../../lib/components/product-card/ProductCard';
 import axios from 'axios';
 import { useParams } from 'next/navigation';
 import RecommendedProduct from './RecommendedProduct';
+import Image from '../../lib/components/image/Image';
 
 
 const ProductDetails = () => {
@@ -15,27 +16,26 @@ const ProductDetails = () => {
       ];
   const [productItems, setProductItems] = useState<any>([]);
   const [recProduct, setRecProduct] = useState<any>([]);
+  const [loading, setLoading] = useState(false);
 
   const params = useParams<any>()
   const { id } = params;
   
-  
-
-  
-
   const fetchProductData = async () => {
     try {
       const response = await axios.get(`/api/products?id=${id}`);
       setProductItems(response.data.products[0]);
+      setLoading(false);
     } catch (error) {
       console.error('Error fetching category items:', error);
+      setLoading(false);
     }
   };
 
   
   useEffect(() => {
+    setLoading(true);
     fetchProductData();
-
   }, []);
 
   //https://via.placeholder.com/400x400
@@ -46,7 +46,17 @@ const dataArray = dataString?.split(", ");
   
   return (
         <div className="maxWidth mx-auto px-4 py-8 pt-24 pb-15">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
+          {loading ? (
+            <div className='flex justify-center mt-10'>
+            <Image
+                className='w-fit lg:w-fit'
+                src='loaderImg.gif'
+                alt='images'
+                type='image'
+            />
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
         <div className="flex justify-center lg:justify-end">
             <img src={imageUrl} alt="Product Image" className="w-full lg:max-w-md rounded-lg shadow-md" />
         </div>
@@ -65,6 +75,7 @@ const dataArray = dataString?.split(", ");
             </div>
         </div>
         </div>
+          )}
         {/* <div className=" mt-20">
         <h2 className="text-3xl text-deep-green font-semibold mb-4">Recommended Products</h2>
         <div className="w-full grid lg:grid-cols-4 gap-8">
