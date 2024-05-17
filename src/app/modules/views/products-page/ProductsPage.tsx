@@ -82,7 +82,7 @@ const ProductsPage = () => {
             </div>
             <div className='maxWidth mx-auto '>
     
-      <div className="container mx-auto px-7 mt-5 lg:flex gap-10">
+      <div className="container mx-auto px-2 mt-5 lg:flex gap-10">
         <div className="w-80 mt-24">
         <div className="bg-white rounded-lg shadow-lg min-h-min hidden md:grid">
             <h2 className="text-xl py-2 px-5 bg-green text-white font-semibold mb-4">Categories</h2>
@@ -138,7 +138,7 @@ const ProductsPage = () => {
               />
               </div>
           ) : (
-            <div className="w-full mt-4 grid lg:grid-cols-4 gap-8">
+            <div className="w-full mt-4 grid lg:grid-cols-4 gap-6">
               {productItems.map((item: any, index) => (
                 <ProductCard key={index} imageUrl={item.imageUrl} title={item.name} description={item.description} _id={item._id} />
               ))}

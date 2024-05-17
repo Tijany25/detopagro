@@ -10,7 +10,7 @@ interface CardProps {
 }
 
 const ProductCard: React.FC<CardProps> = ({ imageUrl, title, description, _id: id }) => {
-  function truncateText(text: string, maxLength = 280) {
+  function truncateText(text: string, maxLength = 250) {
     return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
   }
   return (
@@ -24,8 +24,8 @@ const ProductCard: React.FC<CardProps> = ({ imageUrl, title, description, _id: i
     <div className="py-4 px-2">
         <h3 className="text-lg text-green font-bold mb-2">{title}</h3>
         <p className="text-gray-600 text-sm h-40 text-ellipsis">{truncateText(description)}</p>
-        <div className="flex w-full px-5 items-center justify-center">
-          <button className=" text-white w-full rounded-md p-3 bg-green font-bold py-2 px-4">
+        <div className="flex w-full items-center justify-center">
+          <button className=" text-white w-full rounded-md bg-green font-bold py-2 px-4">
             View Product details
           </button>
         </div>
