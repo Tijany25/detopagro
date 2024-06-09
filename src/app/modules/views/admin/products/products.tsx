@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import ProductModal from './addProductModal'
 import axios from 'axios';
+import CryptoJS from 'crypto-js';
 import EditProductModal from './editProductModal';
 import toast from 'react-hot-toast';
 import moment from 'moment';
@@ -75,7 +76,39 @@ const AdminProducts = () => {
 	setOpenEdit(!openEdit);
   }
 
-  const handleDelete = async (id: any) => {
+  const deleteImageFromCloudinary = async (publicId: string) => {
+	try {
+	  const timestamp = Math.round(new Date().getTime() / 1000);
+	  const stringToSign = `public_id=${publicId}&timestamp=${timestamp}${process.env.API_SECRET}`; // Replace YOUR_API_SECRET with your Cloudinary API secret
+	  const signature = CryptoJS.SHA1(stringToSign).toString();
+  
+	  const response = await axios.post(
+		`https://api.cloudinary.com/v1_1/duneijg7k/image/destroy`,
+		{
+		  public_id: publicId,
+		  signature: signature,
+		  api_key: `${process.env.API_KEY}`,
+		  timestamp: timestamp
+		}
+	  );
+  
+	  return response.data;
+	} catch (error) {
+	  console.error('Error deleting image:', error);
+	  toast.error('Error deleting image');
+	  return null;
+	}
+  };
+  
+
+  const handleDelete = async (id: any, imagePublicId: any) => {
+	if (imagePublicId) {
+		const deleteImageResponse = await deleteImageFromCloudinary(imagePublicId);
+		if (deleteImageResponse.result !== 'ok') {
+		  toast.error('Error deleting image from Cloudinary');
+		  return;
+		}
+	  }
   
     try {
       const response = await axios.delete(`/api/products?id=${id}`);
@@ -97,7 +130,7 @@ const AdminProducts = () => {
     <>
     <div className="mt-24">
       <div className="w-full mx-auto ">
-      <ProductModal modalOpen={open} handleCloseModal={handleClose} data="" category={categoryItems} />
+      <ProductModal modalOpen={open} handleCloseModal={handleClose} data="" category={categoryItems} refetch={fetchProduct}/>
 	  <EditProductModal modalOpen={openEdit} handleCloseModal={handleCloseEditModal} data={editData} category={categoryItems} refetch={fetchProduct}/>
 
 	  <div className='flex justify-between items-center mt-8 mb-6'>
@@ -160,7 +193,7 @@ const AdminProducts = () => {
 					</tr>
 				</thead>
 					<tbody>
-					{productItems?.map(({name, category, createdAt, location, _id}) => (
+					{productItems?.map(({name, category, createdAt, location, _id, imagePublicId}) => (
 						<tr
 						key={name}
 						className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -186,7 +219,7 @@ const AdminProducts = () => {
 						<button onClick={() => handleEdit(_id)} className="border bg-green border-deep-green hover:bg-white hover:text-deep-green text-white font-bold py-2 px-4 rounded">
 							Edit
 						</button>
-						<button onClick={() => handleDelete(_id)} className="border bg-red hover:bg-white hover:text-deep-green text-white font-bold py-2 px-4 rounded">
+						<button onClick={() => handleDelete(_id, imagePublicId)} className="border bg-red hover:bg-white hover:text-deep-green text-white font-bold py-2 px-4 rounded">
 						 	Delete
 						</button>
 						</td>

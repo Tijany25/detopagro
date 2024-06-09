@@ -28,7 +28,7 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<NextResp
 
 export async function POST(req: NextRequest, res: NextResponse): Promise<NextResponse> {
   try {
-    const { name, description, imageUrl } = await req.json();
+    const { name, description, imageUrl, imagePublicId } = await req.json();
 
     // Validate category data (optional, implement validation logic here)
     // if (!name || name.trim() === '') {
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest, res: NextResponse): Promise<NextRes
     // }
 
     // Create a new category instance
-    const newCategory = new Category({ name, description, imageUrl });
+    const newCategory = new Category({ name, description, imageUrl, imagePublicId });
 
     // Save the new category
     await newCategory.save();
@@ -51,9 +51,9 @@ export async function POST(req: NextRequest, res: NextResponse): Promise<NextRes
 export async function PUT(req: NextRequest, res: NextResponse): Promise<NextResponse> {
   try {
     const url = new URL(req.url);
-    const searchParams = url.searchParams; // Get search params object
+    const searchParams = url.searchParams;
 
-    const catId = searchParams.get('id');// Assuming product ID is in URL params
+    const catId = searchParams.get('id');
     const updateData = await req.json();
 
     // Validate product ID (optional)

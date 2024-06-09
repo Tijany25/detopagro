@@ -5,6 +5,7 @@ const categorySchema = new mongoose.Schema({
   description: String,
   imageUrl: String,
   createdAt: { type: Date, default: Date.now },
+  imagePublicId: String
 });
 
 export default mongoose.models.Category || mongoose.model("Category", categorySchema);

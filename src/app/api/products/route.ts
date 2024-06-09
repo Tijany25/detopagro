@@ -45,8 +45,8 @@ export async function GET(req: NextRequest, res: NextResponse): Promise<NextResp
 
 export async function POST(req: NextRequest, res: NextResponse): Promise<NextResponse> {
   try {
-    const { name, location, category, description, imageUrl, estimatedDeliveryDate, features } = await req.json();
-    const newProduct = new Product({ name, location, category, description, imageUrl, estimatedDeliveryDate, features });
+    const { name, location, category, description, imageUrl, estimatedDeliveryDate, features, imagePublicId } = await req.json();
+    const newProduct = new Product({ name, location, category, description, imageUrl, estimatedDeliveryDate, features, imagePublicId });
     await newProduct.save();
     return NextResponse.json({ message: 'Product created successfully' });
   } catch (error) {

@@ -9,6 +9,7 @@ const productSchema = new mongoose.Schema({
   estimatedDeliveryDate: String,
   createdAt: { type: Date, default: Date.now },
   features: String,
+  imagePublicId: String
 });
 
 export default mongoose.models.Product || mongoose.model("Product", productSchema);

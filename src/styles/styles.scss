@@ -236,7 +236,9 @@ h1 {
 }
 .modalWidth{
   width: 40rem;
+  height: 80vh;
   @media screen and (max-width: 900px) {
     width: 20rem;
+    height: 90vh;
   }
 }
