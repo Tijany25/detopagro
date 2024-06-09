@@ -29,7 +29,7 @@ const ContactUs = () => {
                                 <div className='w-10 flex items-center'>
                                 <IoLocationOutline size={30} />
                                 </div>
-                                <p className="mt-1 text-gray-600">123 Main St, San Francisco, CA 94105</p>
+                                <p className="mt-1 text-gray-600">Lagos, Nigeria</p>
                             </div>
                             
                         </div>
@@ -45,20 +45,20 @@ const ContactUs = () => {
                                 <div className='w-10 flex items-center'>
                                 <IoIosMail size={25} />
                                 </div>
-                                <p className="mt-1 text-gray-600 flex"> info@example.com</p>
+                                <p className=" text-gray-600 flex"><a href="mailto:detopessence01@gmail.com"> detopessence01@gmail.com</a></p>
                             </div>
                             <div className='flex py-2'>
                                 <div className='w-10 flex items-center'>
                                 <IoCallOutline size={25} />
                                 </div>
-                                <p className="mt-1 text-gray-600"> +23470999988887</p>
+                                <p className=" text-gray-600">  <a href="tel:+2348167603732">+2348167603732</a></p>
                             </div>
-                            <div className='flex'>
+                            {/* <div className='flex'>
                                 <div className='w-10 flex items-center'>
                                 <FaWhatsapp size={25} />
                                 </div>
                                 <p className="mt-1 text-gray-600"> +23470999988887</p>
-                            </div>
+                            </div> */}
                             
                         </div>
                     </div>

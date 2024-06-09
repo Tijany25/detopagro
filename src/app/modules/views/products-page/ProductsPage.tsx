@@ -17,6 +17,7 @@ const ProductsPage = () => {
 	const [page, setPage] = useState(1)
 	const [totalProducts, setTotalProducts] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState('')
   
   // const catName = localStorage.getItem('cat');
   let catName: any;
@@ -46,9 +47,18 @@ const ProductsPage = () => {
     }
   };
 
+  useEffect(() => {
+   if(searchTerm.length >= 3){
+    setSearch(searchTerm);
+   }else{
+    setSearch('');
+   }
+
+  }, [searchTerm]);
+
 
   const fetchProductData = async () => {
-		let url = `/api/products?q=${searchTerm}&category=${catName || selectedCategory}&limit=${limit}&page=${page}`; // Default URL
+		let url = `/api/products?q=${search}&category=${catName || selectedCategory}&limit=${limit}&page=${page}`;
 		try {
 		  const response = await axios.get(url);
 		  setProductItems(response?.data?.products);
@@ -68,10 +78,10 @@ const ProductsPage = () => {
     setLoading(true)
     fetchProductData();
 
-  }, [selectedCategory, page]);
+  }, [selectedCategory, page, search]);
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
-    };
+  };
     const toggleSelectedCategory = (category: any) => {
       setSelectedCategory(selectedCategory === category ? '' : category);
   };
