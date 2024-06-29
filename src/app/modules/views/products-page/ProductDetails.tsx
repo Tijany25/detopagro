@@ -43,6 +43,9 @@ const ProductDetails = () => {
   const dataString = features;
 const dataArray = dataString?.split(", ");
 
+console.log(category);
+
+
   
   return (
         <div className="maxWidth mx-auto px-4 py-8 pt-24 pb-15">
@@ -76,12 +79,12 @@ const dataArray = dataString?.split(", ");
         </div>
         </div>
           )}
-        {/* <div className=" mt-20">
+        <div className=" mt-20">
         <h2 className="text-3xl text-deep-green font-semibold mb-4">Recommended Products</h2>
         <div className="w-full grid lg:grid-cols-4 gap-8">
         {category ? <RecommendedProduct category={category} /> : ''}
         </div>
-    </div> */}
+    </div>
     </div>
   )
 }
