@@ -88,7 +88,7 @@ const ProductsPage = () => {
   return (
         <div className='pt-24 pb-11'>
            <div className="h-96">
-                  <img className="w-full h-full" src="https://i.ibb.co/RPS4CN0/high-angle-farmland-view.jpg" alt="slides" />
+              <img className="w-full h-full" src="https://res.cloudinary.com/duneijg7k/image/upload/v1719695273/high-angle-farmland-view_tgn2og.jpg" alt="slides" />
             </div>
             <div className='maxWidth mx-auto '>
     
