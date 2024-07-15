@@ -10,7 +10,7 @@ const AboutUs = () => {
         <div className='flex items-center mx-5 lg:mx-50'>
         <div className="bg-gray-100 p-8 rounded-lg shadow-lg sm:w-1/2">
             <div className="mb-6">
-                <p className="text-xl font-bold text-green-700 mb-2 text-center">I am ADEMOLA AHMED OLAOLUWA. The CEO of DETOP ESSENCE ENTERPRISES.</p>
+                <p className="text-xl font-bold text-green-700 mb-2 text-center">DETOPAGRO: Your Trusted Source for Top-Tier Agro Products</p>
                 <p className="text-gray-700 mb-4">DETOPAGRO is a subsidiary of DETOP ESSENCE. DETOPAGRO is an Agricultural Commodity Trading Company established for the sole purpose of Sourcing & Trading of agricultural commodities and making it available in large quantities for industrial usage(s). We are keen to become a major supplier in the industry. We believe the market is a growing one and with our growing pool of farmers, we are not only stationed to provide you with large quantities of agro products but to provide top quality products.</p>
                 <p className="text-gray-700 mb-4">We give utmost concern to our esteemed clients and we are fully prepared to give you the best service this season!</p>
                 <p className="text-gray-700 mb-4">@DETOPAGRO, we can help in Sourcing and aggregating the following commodities in large quantity:</p>
