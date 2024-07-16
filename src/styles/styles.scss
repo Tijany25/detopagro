@@ -178,6 +178,10 @@ h1 {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+  @media screen and (max-width: 1200px) {
+    gap: 20px;
+  }
   @media screen and (max-width: 900px) {
     display: grid;
     gap: 20px;
@@ -244,4 +248,24 @@ h1 {
     width: 20rem;
     height: 90vh;
   }
+}
+
+/* styles/animations.css */
+@keyframes slideIn {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.hide {
+  opacity: 0;
+}
+
+.slide-in {
+  animation: slideIn 4s ease-out forwards;
 }
