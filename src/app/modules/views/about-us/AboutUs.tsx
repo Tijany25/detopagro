@@ -46,6 +46,7 @@ const AboutUs = () => {
                 <ul className="list-disc list-inside text-gray-700 ml-4">
                 <li>Agro-commodities Supply</li>
                 <li>Aggregation Services</li>
+                <li>Gold and precious stones</li>
                 <li>Sourcing & Producing</li>
                 </ul>
             </div>
