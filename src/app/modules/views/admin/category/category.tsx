@@ -63,7 +63,7 @@ const AdminCategory = () => {
 	
 	try {
 	  const timestamp = Math.round(new Date().getTime() / 1000);
-	  const stringToSign = `public_id=${publicId}&timestamp=${timestamp}${process.env.API_SECRET}`; // Replace YOUR_API_SECRET with your Cloudinary API secret
+	  const stringToSign = `public_id=${publicId}&timestamp=${timestamp}${process.env.API_SECRET}`;
 	  const signature = CryptoJS.SHA1(stringToSign).toString();
   
 	  const response = await axios.post(
@@ -113,12 +113,6 @@ const AdminCategory = () => {
   return (
     <>
     <div className="mt-24">
-      {/* <div className="w-full mb-12 px-4">
-        <CardTable />
-      </div>
-      <div className="w-full mb-12 px-4">
-        <CardTable color="dark" />
-      </div> */}
       <div className="w-full mx-auto ">
 	  <CategoryModal modalOpen={open} handleCloseModal={handleClose} data="data" refetch={fetchProduct} />
 	  <EditCategoryModal modalOpen={openEdit} handleCloseModal={handleCloseEditModal} data={editData} refetch={fetchProduct} />
