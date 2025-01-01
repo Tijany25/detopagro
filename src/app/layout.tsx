@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Roboto, Lora } from 'next/font/google'
 import "../styles/styles.scss";
 import Navbar from "./modules/lib/components/navbar/Navbar";
-import Footer from "./modules/lib/components/footer/Footer";
 import { Toaster } from "react-hot-toast";
 
 
@@ -51,7 +50,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   
-  const adminPath = typeof window !== 'undefined' ? window.location.toString().includes("/admin") : null;
   
   return (
     <html lang="en">
