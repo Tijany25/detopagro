@@ -26,8 +26,23 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "Detopagro",
-  description: "DETOP ESSENCE ENTERPRISE LIMITED",
+  title: 'DETOPAGRO - Your Source for Quality Agricultural Products',
+  description: 'DETOPAGRO, a subsidiary of DETOP ESSENCE, sources and trades agricultural commodities in bulk for industrial use. We offer a wide range of high-quality products, including grains, and provide services such as Agro-commodity Supply, Aggregation, Solid Minerals Sourcing, and Production.',
+  keywords: 'agricultural commodities, grains, agro-commodity supply, aggregation services, solid minerals, sourcing, production, industrial agriculture, bulk commodities, farming, DETOPAGRO, DETOP ESSENCE',
+  openGraph: {
+    title: 'DETOPAGRO - Your Source for Quality Agricultural Products',
+    description: 'DETOPAGRO, a subsidiary of DETOP ESSENCE, sources and trades agricultural commodities in bulk for industrial use. We offer a wide range of high-quality products, including grains, and provide services such as Agro-commodity Supply, Aggregation, Solid Minerals Sourcing, and Production.',
+    url: 'https://detopagro.vercel.app/',
+    type: 'website',
+    images: [
+      {
+        url: 'your-image-url',
+        width: 800,
+        height: 600,
+        alt: 'DETOPAGRO Agricultural Products',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
