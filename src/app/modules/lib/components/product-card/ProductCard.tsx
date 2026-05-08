@@ -1,41 +1,92 @@
+"use client";
 import React from "react";
 import Link from "next/link";
-
 
 interface CardProps {
   imageUrl: string;
   title: string;
   description: string;
-  _id: any
+  _id: any;
 }
 
 const ProductCard: React.FC<CardProps> = ({ imageUrl, title, description, _id: id }) => {
-  function truncateText(text: string, maxLength = 250) {
-    return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
-  }
+  const truncate = (text: string, max = 110) =>
+    text.length > max ? `${text.slice(0, max)}…` : text;
+
   return (
-  <div className="max-w-md mx-auto rounded-lg overflow-hidden shadow-lg hover:shadow-2xl cursor-pointer">
-    <Link className="" href={`/products/${id}`}> 
-    <div className="relative h-56">
-        <img className="w-full h-full" src={imageUrl} alt="Product Image" />
-        {/* <div className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm font-medium">SALE
-        </div> */}
-    </div>
-    <div className="py-4 px-2">
-        <h3 className="text-lg text-green font-bold mb-2">{title}</h3>
-        <p className="text-gray-600 text-sm h-40 text-ellipsis">{truncateText(description)}</p>
-        <div className="flex w-full items-center justify-center">
-          <button className=" text-white w-full rounded-md bg-green font-bold py-2 px-4">
-            View Product details
-          </button>
+    <Link href={`/products/${id}`} className="group block h-full">
+      <div
+        className="h-full flex flex-col bg-white rounded-2xl overflow-hidden transition-all duration-300 ease-out"
+        style={{
+          border: "1px solid #e5e7eb",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
+        }}
+        onMouseEnter={(e) => {
+          const el = e.currentTarget as HTMLElement;
+          el.style.transform = "translateY(-4px)";
+          el.style.boxShadow =
+            "0 12px 32px rgba(25,89,54,0.12), 0 2px 8px rgba(0,0,0,0.06)";
+          el.style.borderColor = "rgba(25,89,54,0.18)";
+        }}
+        onMouseLeave={(e) => {
+          const el = e.currentTarget as HTMLElement;
+          el.style.transform = "translateY(0)";
+          el.style.boxShadow = "0 1px 3px rgba(0,0,0,0.06)";
+          el.style.borderColor = "#e5e7eb";
+        }}
+      >
+        {/* Image */}
+        <div className="relative overflow-hidden" style={{ aspectRatio: "4/3" }}>
+          <img
+            src={imageUrl}
+            alt={title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div
+            className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.18) 0%, transparent 60%)",
+            }}
+          />
         </div>
-    </div>
+
+        {/* Content */}
+        <div className="flex flex-col flex-1 p-5">
+          <h3
+            className="font-semibold mb-2 leading-snug transition-colors duration-200 group-hover:text-green"
+            style={{ fontSize: "0.9375rem", color: "#32492F" }}
+          >
+            {title}
+          </h3>
+          <p
+            className="flex-1 line-clamp-3 leading-relaxed mb-5"
+            style={{ fontSize: "0.8125rem", color: "#6b7280" }}
+          >
+            {truncate(description)}
+          </p>
+          <div
+            className="flex items-center gap-1.5 font-semibold transition-colors duration-200"
+            style={{ fontSize: "0.8125rem", color: "#195936" }}
+          >
+            View Details
+            <svg
+              className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1"
+              viewBox="0 0 16 16"
+              fill="none"
+            >
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
     </Link>
-</div>
-
-
-
-
   );
 };
 

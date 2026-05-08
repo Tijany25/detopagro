@@ -9,7 +9,7 @@ export default function Home() {
   const adminPath = typeof window !== 'undefined' ? window.location.toString().includes("/admin") : null;
   return (
     <>
-    <main className="flex min-h-screen flex-col items-center justify-between py-1">
+    <main className="flex min-h-screen flex-col items-stretch py-1">
         <LandingPage />
     </main>
     <Footer />
